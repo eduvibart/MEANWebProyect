@@ -1,8 +1,17 @@
-var app = express();
-var routes = require('.Routes/index');
+
 var express = require('express');
+var app = express();
 
-print("FELI PUTOOOO");
+const PORT = 3000; 
 
-app.use("/", routes);
 
+var routes = require('./Routes/index');
+app.use("/api", routes);
+
+app.get("/", (req, res) => {
+    res.send("<h2>Página inicial cargada!</h2>");
+});
+
+app.listen(PORT, () => {
+    console.log(`🛸 API is listening on port ${PORT}`);
+});

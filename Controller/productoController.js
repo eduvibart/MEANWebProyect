@@ -1,5 +1,5 @@
 
-var Mongoose = require('mongoose');
+var mongoose = require('mongoose');
 const ropaSchema = new mongoose.Schema({
     stock: Number,
     lanzamiento: Date,

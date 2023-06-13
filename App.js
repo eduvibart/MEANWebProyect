@@ -1,17 +1,16 @@
-
+//Configuración app
 var express = require('express');
 var app = express();
+app.use(express.json());
 
-const PORT = 3000; 
-
-
-var routes = require('./Routes/index');
+// Cargamos las rutas
+var routes = require('./Routes/index')
 app.use("/api", routes);
 
+
 app.get("/", (req, res) => {
-    res.send("<h2>Página inicial cargada!</h2>");
+    res.send("<h1>Página inicial cargada!</h1>");
 });
 
-app.listen(PORT, () => {
-    console.log(`🛸 API is listening on port ${PORT}`);
-});
+module.exports = app;
+

@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const RopaModel = require('../models/ropa')
 
 getProducto = function (req, res) {
@@ -13,16 +14,21 @@ getProducto = function (req, res) {
     }
 }
 crearPrenda = function (req, res) {
-    const { stock, lanzamiento, precio, caracteristicas } = req.body;
+    const documento = new RopaModel({
+        stock: req.body.stock,
+        lanzamiento: req.body.lanzamiento,
+        precio: req.body.precio,
+        caracteristicas: req.body.caracteristicas
+    });
 
-    nuevaPrenda = new RopaModel({
-        stock: stock,
-        lanzamiento: lanzamiento,
-        precio: precio,
-        caracteristicas: caracteristicas
+    documento.save().then((nuevaPrenda) => {
+        console.log('Documento insertado correctamente:', nuevaPrenda);
+        res.status(200).json(nuevaPrenda);
     })
-
-    nuevaPrenda.save().then((prendaCreada) => { res.status(200).json(prendaCreada); }).catch((error) => { res.status(400).json({ error: error.message }); });
+        .catch((err) => {
+            console.log('Error al insertar el documento:', err);
+            res.status(400).json(err);
+        });
 }
 
 module.exports = {

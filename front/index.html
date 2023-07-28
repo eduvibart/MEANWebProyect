@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Ropa</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body>
+  <h1>Tienda de Ropa</h1>
+
+  <div ng-controller="myController">
+    <!-- Formulario para agregar una nueva prenda -->
+    <h2>Agregar Prenda</h2>
+    <form ng-submit="addProduct()">
+      <label for="codigoArticulo">Código de Artículo:</label>
+      <input type="text" ng-model="product.codigoArticulo" required>
+      <!-- Otros campos para completar los datos de la prenda -->
+      <button type="submit">Agregar</button>
+    </form>
+
+    <!-- Filtro para mostrar las prendas según tipo y talle -->
+    <h2>Filtrar Prendas</h2>
+    <label for="filtroTipo">Filtrar por tipo:</label>
+    <select id="filtroTipo" ng-model="filtro.tipo" ng-change="filtrarPrendas()">
+      <option value="">Todos</option>
+      <option value="Camiseta">Camiseta</option>
+      <option value="Pantalón">Pantalón</option>
+      <option value="Vestido">Vestido</option>
+      <!-- Agregar más opciones de tipos de prendas si es necesario -->
+    </select>
+
+    <label for="filtroTalle">Filtrar por talle:</label>
+    <select id="filtroTalle" ng-model="filtro.talle" ng-change="filtrarPrendas()">
+      <option value="">Todos</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <!-- Agregar más opciones de talles si es necesario -->
+    </select>
+
+    <!-- Mostrar la lista de prendas filtradas -->
+    <h2>Lista de Prendas</h2>
+    <div ng-repeat="prenda in products | filter: filtro">
+      <h3>{{ prenda.caracteristicas.tipo }} - {{ prenda.caracteristicas.modelo }}</h3>
+      <p>Marca: {{ prenda.caracteristicas.marca }}</p>
+      <p>Talle: {{ prenda.caracteristicas.talle }}</p>
+      <p>Color: {{ prenda.caracteristicas.color }}</p>
+      <p>Precio: {{ prenda.precio }}</p>
+      <p>Stock: {{ prenda.stock }}</p>
+      <button ng-click="edit(prenda.codigoArticulo)">Editar</button>
+      <button ng-click="remove(prenda.codigoArticulo)">Eliminar</button>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>

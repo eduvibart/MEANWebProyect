@@ -1,6 +1,18 @@
 const { default: mongoose } = require('mongoose');
 const RopaModel = require('../models/ropa')
 
+getAllProductos = function(req, res) {
+    RopaModel.find({})
+      .then((productos) => {
+        console.log('Productos encontrados:', productos);
+        res.status(200).json(productos);
+      })
+      .catch((err) => {
+        console.log('Error al obtener los productos:', err);
+        res.status(500).json(err);
+      });
+}
+
 getProducto = function (req, res) {
     const codigoArticulo = req.params.codigoArticulo;
 
@@ -18,7 +30,7 @@ getProducto = function (req, res) {
             console.log('Error al obtener el producto:', err);
             res.status(500).json(err);
         });
-}
+};
 
 deleteProducto = function (req, res) {
     const codigoArticulo = req.params.codigoArticulo;
@@ -37,7 +49,7 @@ deleteProducto = function (req, res) {
             console.log('Error al eliminar el producto:', err);
             res.status(500).json(err);
         });
-}
+};
 
 crearPrenda = function (req, res) {
     try {
@@ -90,12 +102,13 @@ updateProducto = function (req, res) {
             console.log('Error al actualizar el producto:', err);
             res.status(500).json(err);
         });
-}
+};
 
 
 module.exports = {
     crearPrenda,
     updateProducto,
     deleteProducto,
-    getProducto
+    getProducto,
+    getAllProductos
 }

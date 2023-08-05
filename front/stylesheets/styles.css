@@ -1,0 +1,13 @@
+/* Estilo para el contenedor que muestra los productos en línea */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los productos */
+  }
+  
+  /* Estilo para cada producto en la lista */
+  .product-list > div {
+    flex: 0 0 calc(33.33% - 20px); /* Ajustar el tamaño de cada producto para que quepan tres en una fila */
+    border: 1px solid #ccc; /* Bordes para mejorar la apariencia */
+    padding: 10px; /* Espaciado interno para mejorar la apariencia */
+  }

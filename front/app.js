@@ -10,7 +10,7 @@ app.controller('myController', function($scope, $http) {
 
   // Función para obtener todos los productos
   var refresh = function() {
-    $http.get('/getProductos')
+    $http.get('/api/getProductos')
       .then(function(response) {
         console.log("Get Products", response);
         $scope.products = response.data;
@@ -21,8 +21,9 @@ app.controller('myController', function($scope, $http) {
 
   // Función para agregar una nueva prenda
   $scope.addProduct = function () {
-    $http.post('/crearPrenda', $scope.product)
+    $http.post('/api/crearPrenda', $scope.product)
       .then(function(response) {
+        $scope.product = '';
         refresh();
         console.log("Ok ADD", response);
       }, function errorCallback(response) {
@@ -33,7 +34,7 @@ app.controller('myController', function($scope, $http) {
   // Función para filtrar las prendas según tipo y talle
   $scope.filtrarPrendas = function() {
     // Llamamos a la API REST para filtrar los productos en el servidor
-    $http.get('/getProductos', { params: $scope.filtro })
+    $http.get('/api/getProductos', { params: $scope.filtro })
       .then(function(response) {
         console.log("Get Products (Filtrados)", response);
         $scope.products = response.data;
@@ -42,8 +43,17 @@ app.controller('myController', function($scope, $http) {
       });
   };
 
-  // Funciones para eliminar y editar una prenda (remove, edit, update, deselect)
-  // ...
+  // Función para eliminar una prenda
+  $scope.removeProduct = function (codigoArticulo) {
+    $http.delete('/api/deleteProducto/' + codigoArticulo)
+      .then(function(response) {
+        console.log("Producto eliminado:", response);
+        // Actualizar la lista de prendas después de eliminar una
+        refresh();
+      }, function errorCallback(response) {
+        console.log("Error al eliminar el producto:", response);
+      });
+  };
 
   // Llamamos a la función refresh para obtener todos los productos al cargar la página
   refresh();

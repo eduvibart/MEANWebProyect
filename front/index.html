@@ -13,78 +13,90 @@
   <div ng-controller="myController">
     <!-- Formulario para agregar una nueva prenda -->
     <h2>Agregar Prenda</h2>
-    <form ng-submit="addProduct()">
-        <label for="codigoArticulo">Código de Artículo:</label>
-        <input type="text" ng-model="product.codigoArticulo" required>
-        <br>
-        <label for="stock">Stock de Artículo:</label>
-        <input type="number" ng-model="product.stock" required>
-        <br>
-        <label for="lanzamiento">Fecha de Lanzamiento del Artículo:</label>
-        <input type="date" ng-model="product.lanzamiento" required>
-        <br>
-        <label for="precio">Precio de Artículo:</label>
-        <input type="number" ng-model="product.precio" required>
-        <br>
-        <label for="tipo">Tipo de Artículo:</label>
-        <input type="text" ng-model="product.caracteristicas.tipo" required>
-        <br>
-        <label for="talle">Talle de Artículo:</label>
-        <input type="text" ng-model="product.caracteristicas.talle" required>
-        <br>
-        <label for="marca">Marca de Artículo:</label>
-        <input type="text" ng-model="product.caracteristicas.marca" required>
-        <br>
-        <label for="modelo">Modelo de Artículo:</label>
-        <input type="text" ng-model="product.caracteristicas.modelo" required>
-        <br>
-        <label for="color">Color de Artículo:</label>
-        <input type="text" ng-model="product.caracteristicas.color" required>
-        <br>
+    <form ng-submit="addProduct()" class="add-product-form">
+        <!-- Sección "Características" -->
+        <div class="characteristics-section">
+            <label for="tipo">Tipo de Artículo:</label>
+            <input type="text" ng-model="product.caracteristicas.tipo" required>
+            <br>
+            <label for="talle">Talle de Artículo:</label>
+            <input type="text" ng-model="product.caracteristicas.talle" required>
+            <br>
+            <label for="marca">Marca de Artículo:</label>
+            <input type="text" ng-model="product.caracteristicas.marca" required>
+            <br>
+            <label for="modelo">Modelo de Artículo:</label>
+            <input type="text" ng-model="product.caracteristicas.modelo" required>
+            <br>
+            <label for="color">Color de Artículo:</label>
+            <input type="text" ng-model="product.caracteristicas.color" required>
+        </div>
+
+        <!-- Sección "Detalles" -->
+        <div class="prenda-section">
+            <label for="codigoArticulo">Código de Artículo:</label>
+            <input type="text" ng-model="product.codigoArticulo" required>
+            <br>
+            <label for="stock">Stock de Artículo:</label>
+            <input type="number" ng-model="product.stock" required>
+            <br>
+            <label for="lanzamiento">Fecha de Lanzamiento del Artículo:</label>
+            <input type="date" ng-model="product.lanzamiento" required>
+            <br>
+            <label for="precio">Precio de Artículo:</label>
+            <input type="number" ng-model="product.precio" required>
+            <br>
+        </div>
+
         <button type="submit">Agregar</button>
     </form>
 
     <!-- Filtro para mostrar las prendas según tipo y talle -->
     <hr>
-    <h2>Filtrar Prendas</h2>
-    <label for="filtroTipo">Filtrar por tipo:</label>
-    <select id="filtroTipo" ng-model="filtro.tipo" ng-change="filtrarPrendas()">
-      <option value="">Todos</option>
-      <option value="Remera">Camiseta</option>
-      <option value="Pantalón">Pantalón</option>
-      <option value="Zapatillas">Vestido</option>
-    </select>
+    <section class="filter-form">
+      <h2>Filtrar Prendas</h2>
+      <label for="filtroTipo">Filtrar por tipo:</label>
+      <select id="filtroTipo" ng-model="filtro.tipo" ng-change="filtrarPrendas()">
+        <option value="">Todos</option>
+        <option value="Remera">Camiseta</option>
+        <option value="Pantalón">Pantalón</option>
+        <option value="Zapatillas">Vestido</option>
+      </select>
 
-    <label for="filtroTalle">Filtrar por talle:</label>
-    <select id="filtroTalle" ng-model="filtro.talle" ng-change="filtrarPrendas()">
-      <option value="">Todos</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <!-- Agregar más opciones de talles si es necesario -->
-    </select>
+      <label for="filtroTalle">Filtrar por talle:</label>
+      <select id="filtroTalle" ng-model="filtro.talle" ng-change="filtrarPrendas()">
+        <option value="">Todos</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <!-- Agregar más opciones de talles si es necesario -->
+      </select>
+    </section>
 
     <!-- Mostrar la lista de prendas filtradas -->
     <h2>Lista de Prendas</h2>
-    <div class="product-list">
-      <div ng-repeat="prenda in products"> <!-- | filter: filtro"> -->
-        <h3>{{ prenda.caracteristicas.tipo }} - {{ prenda.caracteristicas.marca }}</h3>
-        <p>Codigo del Articulo: {{ prenda.codigoArticulo }}</p>
-        <p>Precio: {{ prenda.precio }}</p>
-        <p>Stock: {{ prenda.stock }}</p>
-        <p>Marca: {{ prenda.caracteristicas.marca }}</p>
-        <p>Talle: {{ prenda.caracteristicas.talle }}</p>
-        <p>Color: {{ prenda.caracteristicas.color }}</p>
-        <button ng-click="removeProduct(prenda.codigoArticulo)">Eliminar</button>
+      <div class="product-list">
+        <div ng-repeat="prenda in products"> <!-- | filter: filtro"> -->
+          <h3>{{ prenda.caracteristicas.tipo }} - {{ prenda.caracteristicas.marca }}</h3>
+          <p>Codigo del Articulo: {{ prenda.codigoArticulo }}</p>
+          <p>Precio: {{ prenda.precio }}</p>
+          <p>Stock: {{ prenda.stock }}</p>
+          <p>Marca: {{ prenda.caracteristicas.marca }}</p>
+          <p>Talle: {{ prenda.caracteristicas.talle }}</p>
+          <p>Color: {{ prenda.caracteristicas.color }}</p>
+          <button ng-click="removeProduct(prenda.codigoArticulo)">Eliminar</button>
+        </div>
       </div>
-    </div>
 
     <!-- Formulario para eliminar una prenda -->
-    <hr>
-    <h2>Eliminar Prenda</h2>
-    <label for="codigoArticulo">Código de Artículo:</label>
-    <input type="text" ng-model="codigoArticulo" required>
-    <button ng-click="removeProduct(codigoArticulo)">Eliminar</button>
+    <section class="delete-product-form">
+      <h2>Eliminar Prenda</h2>
+      <form ng-submit="removeProduct(codigoArticulo)" class="delete-form">
+        <label for="codigoArticulo">Código de Artículo:</label>
+        <input type="text" ng-model="codigoArticulo" required>
+        <button type="submit">Eliminar</button>
+      </form>
+    </section>
   </div>
   <script src="./app.js"></script>
 </body>

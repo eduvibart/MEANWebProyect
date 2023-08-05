@@ -1,13 +1,209 @@
-/* Estilo para el contenedor que muestra los productos en línea */
+/* Estilo para el cuerpo de la página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 100;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  text-align: left;
+  margin: 20px 0;
+  color: #1f1f1f;
+}
+
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+}
+
+/* Estilo para los formularios */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 45px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Estilo para la lista de productos */
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Espacio entre los productos */
-  }
-  
-  /* Estilo para cada producto en la lista */
-  .product-list > div {
-    flex: 0 0 calc(33.33% - 20px); /* Ajustar el tamaño de cada producto para que quepan tres en una fila */
-    border: 1px solid #ccc; /* Bordes para mejorar la apariencia */
-    padding: 10px; /* Espaciado interno para mejorar la apariencia */
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: space-between; /* Alinea los elementos al ancho disponible */
+}
+
+.product-list > div {
+  flex: 0 0 calc(30% - 5px); /* Ancho de cada elemento para mostrar 3 en una fila */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-list h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.product-list p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.product-list button {
+  background-color: #f00;
+}
+
+.product-list button:hover {
+  background-color: #d00;
+}
+
+/* Estilo para el formulario de eliminación */
+.delete-form {
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.delete-form label {
+  margin-bottom: 0;
+}
+
+.delete-form input[type="text"] {
+  margin-bottom: 0;
+}
+
+/* Estilo para el pie de página */
+footer {
+  text-align: center;
+  margin: 20px 0;
+  color: #999;
+}
+
+
+/* Estilo para el formulario de agregar prenda */
+.add-product-form {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centra el formulario en la página */
+  position: relative; /* Agregamos posicion relativa al formulario */
+}
+
+.characteristics-section {
+  float: right; /* Alinea el bloque de características a la derecha */
+  width: 35%; /* Ancho reducido del bloque de características */
+}
+
+.characteristics-section label {
+  font-size: 14px;
+}
+
+.characteristics-section input[type="text"],
+.characteristics-section input[type="number"],
+.characteristics-section input[type="date"] {
+  font-size: 14px;
+  width: 100%; /* Ancho fijo para los campos de características */
+  padding: 1px 7px; /* Reducimos el padding vertical para comprimir el espacio */
+}
+
+.prenda-section {
+  float: left; /* Alinea el bloque de detalles a la izquierda */
+  width: 50%; /* Ancho del bloque de detalles */
+}
+
+/* Añade un espacio entre las dos secciones */
+.add-product-form::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* Estilo para el botón de agregar */
+.add-product-form button {
+  margin-top: 20px; /* Agregamos un margen superior para separar del último campo de input */
+
+  /* Agregamos estilos de posicionamiento absoluto */
+  position: absolute;
+  bottom: 10px; /* Espacio desde la parte inferior */
+  right: 10px; /* Espacio desde la parte derecha */
+}
+
+
+/* Estilo para el formulario de filtrar prendas */
+.filter-form {
+  max-width: 400px; /* Ancho máximo del formulario */
+  margin: 0 auto; /* Centra el formulario en la página */
+}
+
+/* Alineación en una sola línea */
+.filter-form label,
+.filter-form select {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Estilos para hacer que los elementos floten a la izquierda */
+.filter-form label,
+.filter-form select {
+  float: left;
+}
+
+/* Espacio entre los elementos */
+.filter-form label {
+  margin-right: 5px;
+}
+
+/* Ancho fijo para los elementos */
+.filter-form select {
+  width: 150px;
+}
+
+/* Limpiar el float para que el formulario no afecte a otros elementos */
+.filter-form::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+

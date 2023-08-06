@@ -206,4 +206,62 @@ footer {
 }
 
 
+.add-product-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.prenda-section,
+.characteristics-section {
+  /* Estilos para reducir el tamaño vertical de las secciones */
+  flex-basis: calc(50% - 10px); /* Tamaño del 50% del contenedor con un margen de 10px entre las secciones */
+}
+
+.characteristics-section {
+  /* Estilos para alinear las características a la derecha */
+  text-align: right;
+}
+
+.product-info {
+  /* Estilos para alinear la imagen a la izquierda y las características a la derecha */
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-image {
+  width: 1px;
+  height: 1px;
+  object-fit: scale-down;
+  margin-left: 10px;
+}
+
+/* Estilos para cada producto en la lista */
+.product-item {
+  width: 30%; /* Ajusta el ancho según tus necesidades */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+/* Estilos para la imagen de cada producto */
+.image-container {
+  width: 100%;
+  height: 200px; /* Ajusta la altura de la imagen según tus necesidades */
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Resto de estilos para la información del producto */
+.product-details {
+  margin-top: 10px;
+}
 

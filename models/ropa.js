@@ -4,6 +4,7 @@ const ropaSchema = new mongoose.Schema({
     stock: Number,
     lanzamiento: Date,
     precio: Number,
+    imagen: String,
     caracteristicas: {
         tipo: String,
         talle: String,

@@ -23,7 +23,7 @@ app.controller('myController', function($scope, $http) {
   $scope.addProduct = function () {
     $http.post('/api/crearPrenda', $scope.product)
       .then(function(response) {
-        $scope.product = '';
+        $scope.product = {};
         refresh();
         console.log("Ok ADD", response);
       }, function errorCallback(response) {
@@ -33,8 +33,19 @@ app.controller('myController', function($scope, $http) {
 
   // Función para filtrar las prendas según tipo y talle
   $scope.filtrarPrendas = function() {
+    // Creamos un objeto para almacenar los filtros seleccionados
+    var filtros = {};
+
+    // Agregamos los filtros solo si están seleccionados
+    if ($scope.filtro.tipo) {
+      filtros.tipo = $scope.filtro.tipo;
+    }
+    if ($scope.filtro.talle) {
+      filtros.talle = $scope.filtro.talle;
+    }
+
     // Llamamos a la API REST para filtrar los productos en el servidor
-    $http.get('/api/getProductos', { params: $scope.filtro })
+    $http.get('/api/getProductos', { params: filtros })
       .then(function(response) {
         console.log("Get Products (Filtrados)", response);
         $scope.products = response.data;

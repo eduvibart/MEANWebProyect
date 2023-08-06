@@ -2,15 +2,31 @@ const { default: mongoose } = require('mongoose');
 const RopaModel = require('../models/ropa')
 
 getAllProductos = function(req, res) {
-    RopaModel.find({})
-      .then((productos) => {
-        console.log('Productos encontrados:', productos);
-        res.status(200).json(productos);
-      })
-      .catch((err) => {
-        console.log('Error al obtener los productos:', err);
-        res.status(500).json(err);
-      });
+    const { tipo, talle } = req.query; // Obtener los parámetros de consulta (tipo y talle) desde la URL
+
+  // Crear un objeto para almacenar los criterios de búsqueda
+  const searchCriteria = {};
+
+  // Agregar criterio de búsqueda por tipo si está presente en la URL
+  if (tipo) {
+    searchCriteria['caracteristicas.tipo'] = tipo;
+  }
+
+  // Agregar criterio de búsqueda por talle si está presente en la URL
+  if (talle) {
+    searchCriteria['caracteristicas.talle'] = talle;
+  }
+
+  // Realizar la consulta a la base de datos utilizando los criterios de búsqueda
+  RopaModel.find(searchCriteria)
+    .then((productos) => {
+      console.log('Productos encontrados:', productos);
+      res.status(200).json(productos);
+    })
+    .catch((err) => {
+      console.log('Error al obtener los productos:', err);
+      res.status(500).json(err);
+    });
 }
 
 getProducto = function (req, res) {
@@ -58,6 +74,7 @@ crearPrenda = function (req, res) {
             stock: req.body.stock,
             lanzamiento: req.body.lanzamiento,
             precio: req.body.precio,
+            imagen: req.body.imagen,
             caracteristicas: req.body.caracteristicas
         });
 
